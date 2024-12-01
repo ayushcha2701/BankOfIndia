@@ -5,8 +5,8 @@ import BankOfIndia.BankOfIndia.entity.Auth.User;
 import BankOfIndia.BankOfIndia.exception.UserAlreadyExistException;
 import BankOfIndia.BankOfIndia.exception.UserNotFoundException;
 import BankOfIndia.BankOfIndia.exception.WrongPasswordException;
-import BankOfIndia.BankOfIndia.repository.authUser.AuthUserRepository;
-import BankOfIndia.BankOfIndia.repository.authUser.SessionRepository;
+import BankOfIndia.BankOfIndia.repository.Auth.AuthUserRepository;
+import BankOfIndia.BankOfIndia.repository.SessionRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -31,6 +31,8 @@ public class AuthServiceImpl implements AuthService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.sessionRepository = sessionRepository;
     }
+
+
     @Override
     public boolean signUp(String email, String password) throws UserAlreadyExistException {
 
@@ -108,8 +110,18 @@ public class AuthServiceImpl implements AuthService {
                     verifyWith(key).
                     build().
                     parseSignedClaims(token);
+
+            // Extract expiration date and validate it
             Date expiryAt = claims.getPayload().getExpiration();
+            if (expiryAt.before(new Date())) {
+                return false; // Token has expired
+            }
+
+            // Validate specific claims (e.g., user_id)
             Long userId = claims.getPayload().get("user_id", Long.class);
+            if (userId == null || userId <= 0) {
+                return false; // Invalid user ID in the token
+            }
         } catch(Exception e ){
             return false;
         }

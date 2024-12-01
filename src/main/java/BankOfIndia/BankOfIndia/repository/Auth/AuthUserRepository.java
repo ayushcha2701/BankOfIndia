@@ -1,4 +1,4 @@
-package BankOfIndia.BankOfIndia.repository.authUser;
+package BankOfIndia.BankOfIndia.repository.Auth;
 
 import BankOfIndia.BankOfIndia.entity.Auth.User;
 import org.springframework.data.jpa.repository.JpaRepository;

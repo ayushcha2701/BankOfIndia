@@ -55,7 +55,8 @@ public class AuthController {
             responseDto.setRequestStatus(RequestStatus.SUCCESS);
             MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
             headers.add("AUTH_TOKEN", token);
-            ResponseEntity<LogInResponseDto> response = new ResponseEntity<>(responseDto, headers, HttpStatus.OK);
+            ResponseEntity<LogInResponseDto> response = new ResponseEntity<>(
+                    responseDto, headers, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             LogInResponseDto loginDto = new LogInResponseDto();
