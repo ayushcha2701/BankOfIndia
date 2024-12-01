@@ -1,6 +1,8 @@
 package BankOfIndia.BankOfIndia.entity;
 
 import java.sql.Date;
+
+import BankOfIndia.BankOfIndia.entity.Auth.BaseModel;
 import BankOfIndia.BankOfIndia.entity.TypeOfAccount;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,15 +14,10 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class BankEntity {
+public class BankEntity extends BaseModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String firstName;
     private String lastName;
-    private String email;
-    private String password;
     private Date dateOfBirth;
     private TypeOfAccount typeOfAccount;
     private String address;
