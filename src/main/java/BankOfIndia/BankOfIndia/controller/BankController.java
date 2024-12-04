@@ -5,6 +5,7 @@ import BankOfIndia.BankOfIndia.dto.GetAccountResponseDto;
 import BankOfIndia.BankOfIndia.dto.GetAllAccountResponseDto;
 import BankOfIndia.BankOfIndia.entity.BankEntity;
 import BankOfIndia.BankOfIndia.exception.ResourceNotFoundException;
+import BankOfIndia.BankOfIndia.mapper.BankMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,10 +35,10 @@ public class BankController {
     public ResponseEntity<AccountResponseDto>createAccount
             (@RequestBody AccountRequestDto createAccountRequestDto) {
 
-        AccountResponseDto response = new AccountResponseDto();
-        BankEntity bankEntity = createAccountRequestDto.createAcctReq();
-        BankEntity saveBankEntity = bankServiceImpl.createAccount(bankEntity);
-        return ResponseEntity.ok(response.fromAcct(saveBankEntity));
+        BankEntity bankEntity = BankMapper.toEntity(createAccountRequestDto); // Map DTO to entity
+        BankEntity savedEntity = bankServiceImpl.createAccount(bankEntity);   // Call service
+        AccountResponseDto responseDto = BankMapper.toResponseDto(savedEntity); // Map entity to DTO
+        return ResponseEntity.ok(responseDto);
 
     }
 
@@ -68,22 +69,9 @@ public class BankController {
     public ResponseEntity<GetAccountResponseDto> updateAccount(@PathVariable Long id, @RequestBody GetAccountResponseDto accountDto) {
         try {
 
-            BankEntity bankEntity = new BankEntity();
-            bankEntity.setFirstName(accountDto.getFirstName());
-            bankEntity.setLastName(accountDto.getLastName());
-            bankEntity.setDateOfBirth(accountDto.getDateOfBirth());
-            bankEntity.setTypeOfAccount(accountDto.getTypeOfAccount());
-            bankEntity.setAddress(accountDto.getAddress());
-            bankEntity.setCity(accountDto.getCity());
-            bankEntity.setState(accountDto.getState());
-            bankEntity.setCountry(accountDto.getCountry());
-            bankEntity.setPincode(accountDto.getPincode());
-            bankEntity.setPhoneNumber(accountDto.getPhoneNumber());
-            bankEntity.setInitialDeposit(accountDto.getInitialDeposit());
-
+            BankEntity bankEntity = BankMapper.toEntity(accountDto);
             BankEntity updatedEntity = bankServiceImpl.updateAccount(bankEntity, id);
-
-            GetAccountResponseDto updatedDto = GetAccountResponseDto.fromAcct(updatedEntity);
+            GetAccountResponseDto updatedDto = BankMapper.toGetAccountResponseDto(updatedEntity);
             return ResponseEntity.ok(updatedDto);
 
         } catch (ResourceNotFoundException e) {

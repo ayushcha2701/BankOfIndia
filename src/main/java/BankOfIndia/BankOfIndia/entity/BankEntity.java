@@ -28,4 +28,11 @@ public class BankEntity extends BaseModel {
     private String pincode;
     private String phoneNumber;
     private Double initialDeposit;
+
+
+
+
+    
+
+
 }
