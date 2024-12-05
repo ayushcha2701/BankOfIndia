@@ -1,4 +1,4 @@
-package BankOfIndia.BankOfIndia.entity.Auth;
+package BankOfIndia.BankOfIndia.entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

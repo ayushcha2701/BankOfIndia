@@ -1,5 +1,6 @@
 package BankOfIndia.BankOfIndia.entity.Auth;
 
+import BankOfIndia.BankOfIndia.entity.BaseModel;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.Entity;
 import lombok.Getter;

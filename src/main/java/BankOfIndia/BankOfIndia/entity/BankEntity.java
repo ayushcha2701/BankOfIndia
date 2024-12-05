@@ -1,13 +1,13 @@
 package BankOfIndia.BankOfIndia.entity;
 
 import java.sql.Date;
+import java.util.List;
 
-import BankOfIndia.BankOfIndia.entity.Auth.BaseModel;
-import BankOfIndia.BankOfIndia.entity.TypeOfAccount;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.FetchType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,12 +27,14 @@ public class BankEntity extends BaseModel {
     private String country;
     private String pincode;
     private String phoneNumber;
-    private Double initialDeposit;
+    private Double balance;
 
+    @ElementCollection(fetch = FetchType.EAGER) // Automatically fetch the list
+    @CollectionTable(name = "amt_deposit", joinColumns = @JoinColumn(name = "bank_id"))
+    private List<Double> amtDeposit;
 
-
-
-    
-
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "amt_withdraw", joinColumns = @JoinColumn(name = "bank_id"))
+    private List<Double> amtWithdraw;
 
 }
