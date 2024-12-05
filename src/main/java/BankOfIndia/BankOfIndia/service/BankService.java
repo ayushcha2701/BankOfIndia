@@ -51,7 +51,7 @@ public class BankService implements BankServiceImpl {
         existingBankEntity.setCountry(bankEntity.getCountry());
         existingBankEntity.setPincode(bankEntity.getPincode());
         existingBankEntity.setPhoneNumber(bankEntity.getPhoneNumber());
-        existingBankEntity.setInitialDeposit(bankEntity.getInitialDeposit());
+        existingBankEntity.setBalance(bankEntity.getBalance());
 
         return bankRepository.save(existingBankEntity);
     }
