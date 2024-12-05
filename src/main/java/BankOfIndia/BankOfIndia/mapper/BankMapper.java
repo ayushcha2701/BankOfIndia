@@ -21,7 +21,7 @@ public class BankMapper {
         entity.setCountry(requestDto.getCountry());
         entity.setPincode(requestDto.getPincode());
         entity.setPhoneNumber(requestDto.getPhoneNumber());
-        entity.setInitialDeposit(requestDto.getInitialDeposit());
+        entity.setBalance(requestDto.getBalance());
         return entity;
     }
 
@@ -39,7 +39,7 @@ public class BankMapper {
         entity.setCountry(responseDto.getCountry());
         entity.setPincode(responseDto.getPincode());
         entity.setPhoneNumber(responseDto.getPhoneNumber());
-        entity.setInitialDeposit(responseDto.getInitialDeposit());
+        entity.setBalance(responseDto.getBalance());
         return entity;
     }
 
@@ -57,7 +57,7 @@ public class BankMapper {
         responseDto.setCountry(entity.getCountry());
         responseDto.setPincode(entity.getPincode());
         responseDto.setPhoneNumber(entity.getPhoneNumber());
-        responseDto.setInitialDeposit(entity.getInitialDeposit());
+        responseDto.setBalance(entity.getBalance());
         return responseDto;
     }
 
@@ -75,7 +75,7 @@ public class BankMapper {
         responseDto.setCountry(entity.getCountry());
         responseDto.setPincode(entity.getPincode());
         responseDto.setPhoneNumber(entity.getPhoneNumber());
-        responseDto.setInitialDeposit(entity.getInitialDeposit());
+        responseDto.setBalance(entity.getBalance());
         return responseDto;
     }
 }

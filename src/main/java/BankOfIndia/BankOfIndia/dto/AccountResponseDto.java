@@ -22,7 +22,7 @@ public class AccountResponseDto {
     private String country;
     private String pincode;
     private String phoneNumber;
-    private Double initialDeposit;
+    private double balance;
 
     public static AccountResponseDto fromAcct(BankEntity bankEntity){
         AccountResponseDto createAccountResponseDto = new AccountResponseDto();
@@ -37,7 +37,7 @@ public class AccountResponseDto {
         createAccountResponseDto.setCountry(bankEntity.getCountry());
         createAccountResponseDto.setPincode(bankEntity.getPincode());
         createAccountResponseDto.setPhoneNumber(bankEntity.getPhoneNumber());
-        createAccountResponseDto.setInitialDeposit(bankEntity.getInitialDeposit());
+        createAccountResponseDto.setBalance(bankEntity.getBalance());
         return createAccountResponseDto;
     }
 

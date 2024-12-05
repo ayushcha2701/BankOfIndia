@@ -22,7 +22,7 @@ public class AccountRequestDto {
     private String country;
     private String pincode;
     private String phoneNumber;
-    private Double initialDeposit;
+    private double balance;
 
     public BankEntity createAcctReq(){
 
@@ -38,7 +38,7 @@ public class AccountRequestDto {
         bankEntity.setCountry(this.country);
         bankEntity.setPincode(this.pincode);
         bankEntity.setPhoneNumber(this.phoneNumber);
-        bankEntity.setInitialDeposit(this.initialDeposit);
+        bankEntity.setBalance(this.balance);
 
         return bankEntity;
     }
