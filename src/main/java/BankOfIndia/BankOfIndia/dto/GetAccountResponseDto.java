@@ -24,7 +24,7 @@ public class GetAccountResponseDto {
     private String country;
     private String pincode;
     private String phoneNumber;
-    private Double initialDeposit;
+    private double balance;
 
     public static GetAccountResponseDto fromAcct(BankEntity bankEntity){
 
@@ -42,7 +42,7 @@ public class GetAccountResponseDto {
         accountResponseDto.setCountry(bankEntity.getCountry());
         accountResponseDto.setPincode(bankEntity.getPincode());
         accountResponseDto.setPhoneNumber(bankEntity.getPhoneNumber());
-        accountResponseDto.setInitialDeposit(bankEntity.getInitialDeposit());
+        accountResponseDto.setBalance(bankEntity.getBalance());
 
         return accountResponseDto;
     }
